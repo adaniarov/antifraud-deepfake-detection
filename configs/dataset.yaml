@@ -1,0 +1,35 @@
+dataset:
+  target_size: 10000
+  label_balance: 0.5       # 50% human / 50% AI
+  fraud_ratio: 0.55        # внутри каждого класса
+
+  splits:
+    train: 0.70
+    val: 0.15
+    test_iid: 0.15
+
+  token_length:
+    min: 20
+    max: 512
+
+  generation:
+    models:
+      train: ["gpt-4o", "claude-3-5-sonnet", "mistral-7b-instruct"]
+      test_cross: ["llama-3.1-8b"]
+    temperatures: [0.2, 0.7]
+    prompt_types: ["direct", "rewrite", "continuation"]
+    prompt_type_ratio: [0.5, 0.3, 0.2]
+
+  sources:
+    human_fraud:
+      - nazario
+      - iwspa_ap
+      - sms_spam_uci
+      - spamassassin_spam
+      - nigerian_fraud
+    human_legit:
+      - enron_ham
+      - spamassassin_ham
+      - csdmc2010_ham
+
+  fpr_threshold: 0.05       # метрика RAID: accuracy @ FPR=5%

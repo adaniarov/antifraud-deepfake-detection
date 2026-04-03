@@ -1,0 +1,78 @@
+[project]
+name = "antifraud-deepfake-detection"
+version = "0.1.0"
+description = "Detecting Textual Deepfake Attacks in Anti-Fraud Systems"
+requires-python = ">=3.11"
+authors = [{ name = "Askar Danyarov" }]
+
+dependencies = [
+    # ── Data & I/O ──────────────────────────────────────────────
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "pyarrow>=16.0.0",
+    # ── NLP & Text Processing ───────────────────────────────────
+    "nltk>=3.9.0",
+    "spacy>=3.7.0",
+    "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
+    "tiktoken>=0.7.0",
+    "clean-text>=0.6.0",
+    "langdetect>=1.0.9",
+    "textstat>=0.7.4",
+    # ── Classic ML ──────────────────────────────────────────────
+    "scikit-learn>=1.5.0",
+    "xgboost>=2.1.0",
+    "lightgbm>=4.5.0",
+    "shap>=0.42.0,<0.50.0",
+    # ── Deep Learning / Transformers ────────────────────────────
+    "torch>=2.3.0",
+    "transformers>=4.44.0",
+    "datasets>=2.20.0",
+    "accelerate>=0.33.0",
+    "peft>=0.12.0",
+    "evaluate>=0.4.3",
+    # ── LLM APIs (data generation) ──────────────────────────────
+    "openai>=1.40.0",
+    "anthropic>=0.34.0",
+    "mistralai>=1.0.0",
+    # ── Experiment Tracking ─────────────────────────────────────
+    "mlflow>=2.15.0",
+    # ── Visualization ───────────────────────────────────────────
+    "matplotlib>=3.9.0",
+    "seaborn>=0.13.0",
+    "plotly>=5.23.0",
+    # ── Prototype ───────────────────────────────────────────────
+    "gradio>=4.42.0",
+    # ── Utilities ───────────────────────────────────────────────
+    "python-dotenv>=1.0.0",
+    "rich>=13.7.0",
+    "typer>=0.12.0",
+    "pydantic>=2.8.0",
+    "tqdm>=4.66.0",
+    "loguru>=0.7.2",
+    "tenacity>=9.0.0",
+    "joblib>=1.5.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "ruff>=0.5.0",
+    "ipykernel>=6.29.0",
+    "jupyter>=1.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

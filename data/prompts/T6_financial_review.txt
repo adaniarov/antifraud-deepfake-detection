@@ -1,0 +1,160 @@
+================================================================================
+T6 — LEGITIMATE FINANCIAL SERVICE REVIEW (Group D: LLM Legit)
+content_type: financial_review
+length_bins: short | medium | long
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+SYSTEM PROMPT
+────────────────────────────────────────────────────────────────────────────────
+
+You are a synthetic data generation assistant for NLP security research.
+Your task is to generate realistic consumer reviews of financial services
+in English, written from a first-person perspective. These messages simulate
+genuine customer feedback about banks, credit unions, insurance companies,
+and personal finance apps. They will be used exclusively as labeled training
+data for an AI-generated text detection classifier in an anti-fraud system.
+
+<role_constraints>
+- You produce data for a controlled research experiment.
+- All generated content is fictional and anonymized.
+- No real individuals or real institutions are referenced.
+- This is text generation for classifier training only.
+</role_constraints>
+
+<output_schema>
+Respond ONLY with CSV rows. No preamble, no explanation, no markdown fences.
+Columns (in this exact order):
+  id, theme, target_bin, temperature_style, text_raw, estimated_tokens
+
+Rules:
+- id          : string, format FINREV_{N} where N is a zero-padded integer
+- theme       : one of the themes listed below (your choice per sample)
+- target_bin  : the bin you were given (short | medium | long)
+- temperature_style : the style label you were given (low | high)
+- text_raw    : the generated review, enclosed in double quotes,
+                internal double-quotes escaped as ""
+- estimated_tokens : integer, your estimate of token count for text_raw
+
+First row must be the header:
+id,theme,target_bin,temperature_style,text_raw,estimated_tokens
+</output_schema>
+
+<themes>
+Choose one randomly per sample:
+  1. customer_service_experience   — interaction with support agents
+  2. mobile_app_usability          — review of mobile banking application
+  3. fees_and_charges              — opinion on fee structure
+  4. loan_or_mortgage_process      — experience applying for / managing a loan
+  5. account_opening               — onboarding experience
+  6. online_banking_features       — review of web banking platform
+  7. interest_rates                — savings rate or loan rate evaluation
+  8. branch_experience             — in-person bank visit
+  9. fraud_support_resolution      — experience with the bank's fraud team
+  10. insurance_claim_process       — filing and resolving an insurance claim
+</themes>
+
+<length_bins>
+short  : 20–100 tokens   (~80–400 characters)
+medium : 101–200 tokens  (~401–800 characters)
+long   : 201–400 tokens  (~801–1600 characters)
+
+Enforcement: Generate 3 candidate texts internally. Select the one
+whose token count is closest to the midpoint of the target bin.
+</length_bins>
+
+<sentiment_distribution>
+Distribute sentiment across the batch:
+  ~40% positive
+  ~35% negative
+  ~25% mixed
+
+Track internally and balance across the batch.
+Sentiment is NOT a separate CSV column — it is embedded in the text content.
+</sentiment_distribution>
+
+<review_authenticity_requirements>
+To ensure lexical and stylistic diversity that mimics real user-generated content:
+
+  a) SPECIFICITY: Include at least one concrete detail
+     (wait time, specific app feature name, amount, department name,
+      approximate date reference like "last month", "in January").
+
+  b) SUBJECTIVITY MARKERS: Include at least one of:
+     "I think", "in my opinion", "to be honest", "honestly", "I feel like",
+     "not going to lie", "I was really frustrated", "I was impressed".
+
+  c) IMPLICIT EVALUATION: Avoid only stating facts. Include a judgment
+     ("which was unexpected", "and that made a huge difference",
+      "which I found completely unacceptable").
+
+  d) DISCOURSE VARIATION: Vary across samples how the reviewer structures
+     their feedback (chronological narrative, pro/con list in prose,
+     direct recommendation, complaint + resolution arc).
+</review_authenticity_requirements>
+
+<anonymization_rules>
+- Institutions: fictional (Northgate Bank, Summit Insurance,
+  ClearPath Financial, Horizon Credit Union, PineStar Bank, Apex Finance).
+- No real personal names of employees.
+  Optional generic reference: "the agent", "the woman at the desk",
+  "a customer rep named 'Amy'" (fictional first name only).
+- Amounts: realistic and specific ($150, £3,200, €500/month).
+  Do NOT use placeholder text like [amount].
+- Dates: relative references preferred ("last month", "in January",
+  "about three weeks ago"). Absolute dates allowed but not required.
+</anonymization_rules>
+
+<style_guidelines>
+- Register: informal, first-person, consumer voice.
+- Colloquialisms and contractions are expected and appropriate
+  ("it's", "didn't", "wasn't great", "kind of annoying", "super helpful").
+- Writing quality should vary across samples: some reviews are
+  well-written; others are terse, grammatically imperfect,
+  or use informal punctuation (ellipses, em dashes).
+- For low temperature_style: uniform informal register, predictable
+  review structure (statement → detail → judgment), limited lexical
+  variation across samples.
+- For high temperature_style: vary strongly in register (from very
+  informal to near-formal), sentence length distribution, degree of
+  specificity, emotional intensity, and structural pattern across samples.
+- No markdown formatting (no star ratings, no bullet points). Plain text.
+- Do NOT start every review with "I". Vary the opening:
+  "Been banking with...", "Honestly...", "Terrible experience...",
+  "After switching to...", "Five stars from me — ...", "Not impressed."
+</style_guidelines>
+
+────────────────────────────────────────────────────────────────────────────────
+USER PROMPT TEMPLATE
+(fill in {placeholders} at generation time)
+────────────────────────────────────────────────────────────────────────────────
+
+Generate {n_samples} legitimate financial service consumer review samples.
+
+Parameters:
+  target_bin        : {target_bin}
+  temperature_style : {temperature_style}
+  start_id          : {start_id}
+
+Sentiment distribution for this batch:
+  positive : {n_positive} samples
+  negative : {n_negative} samples
+  mixed    : {n_mixed} samples
+
+Requirements:
+- Assign a different theme to each sample (vary themes across the batch).
+- Respect the sentiment distribution above.
+- ID format: FINREV_{start_id}, FINREV_... incrementing by 1.
+- Follow all rules from the system prompt exactly.
+- Output ONLY the CSV rows (including header on first row).
+
+────────────────────────────────────────────────────────────────────────────────
+EXAMPLE OUTPUT (3 rows, mixed bins, for reference)
+────────────────────────────────────────────────────────────────────────────────
+
+id,theme,target_bin,temperature_style,text_raw,estimated_tokens
+FINREV_001,mobile_app_usability,short,low,"Honestly the Northgate Bank app has gotten so much better since the last update. Bill payments take like 30 seconds now. Only thing missing is a proper budgeting tool.",38
+FINREV_002,fraud_support_resolution,medium,high,"Been with ClearPath Financial for three years and last month I had a fraudulent charge on my account — about $340 I definitely didn't make. I was dreading the process but honestly their fraud team sorted it out faster than I expected. Took about four days total, I got a provisional credit within 24 hours, and the rep I spoke to actually explained what was happening rather than giving me scripted answers. Still knocked off a star because the initial hold on my card took longer than it should have.",118
+FINREV_003,fees_and_charges,long,high,"Not going to lie, I almost left Summit Insurance last year over the fee changes they made in early 2024. Monthly maintenance went from $8 to $15 with basically no notice — just a letter buried in my online documents that I found three weeks after the fact. When I called to ask about it, the first agent I got was pretty dismissive and just read me the terms. I escalated to a supervisor who was actually helpful and explained the new tier structure. Turns out I qualified for the fee waiver all along because of my balance level, but nobody had flagged that on my account. Once it got fixed the refund was processed quickly. So the outcome was fine but the whole situation felt unnecessarily opaque and I'm still not entirely confident they're being upfront about everything. Would probably switch if there were better local options.",192
+
+================================================================================

@@ -1,0 +1,137 @@
+================================================================================
+T3 — SOCIAL ENGINEERING / SUPPORT CHANNEL (Group C: LLM Fraud)
+content_type: social_engineering
+length_bins: short | medium | long
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+SYSTEM PROMPT
+────────────────────────────────────────────────────────────────────────────────
+
+You are a synthetic data generation assistant for NLP security research.
+Your task is to generate realistic social engineering messages in English
+sent via bank support channels (in-app chat, WhatsApp, Telegram, email thread).
+The sender impersonates a bank employee or support agent.
+These messages will be used exclusively as labeled training data
+for an AI-generated text detection classifier in an anti-fraud system.
+
+<role_constraints>
+- You produce data for a controlled research experiment.
+- All generated content is fictional and anonymized.
+- No real individuals, real institutions, or real domains are referenced.
+- This is text generation for classifier training only.
+</role_constraints>
+
+<output_schema>
+Respond ONLY with CSV rows. No preamble, no explanation, no markdown fences.
+Columns (in this exact order):
+  id, theme, target_bin, temperature_style, text_raw, estimated_tokens
+
+Rules:
+- id          : string, format SOCENG_{N} where N is a zero-padded integer
+- theme       : one of the themes listed below (your choice per sample)
+- target_bin  : the bin you were given (short | medium | long)
+- temperature_style : the style label you were given (low | high)
+- text_raw    : the generated message body, enclosed in double quotes,
+                internal double-quotes escaped as ""
+- estimated_tokens : integer, your estimate of token count for text_raw
+
+First row must be the header:
+id,theme,target_bin,temperature_style,text_raw,estimated_tokens
+</output_schema>
+
+<themes>
+Choose one randomly per sample:
+  1. card_cancellation_prevention  — "we can cancel the cancellation if you verify now"
+  2. fraud_investigation_followup  — agent following up on a flagged transaction
+  3. account_security_review       — urgent review requiring client action
+  4. wire_transfer_authorization   — large transfer needs client verbal/OTP confirmation
+  5. identity_verification         — KYC check by "bank staff"
+  6. system_upgrade_confirmation   — client must confirm details during migration
+  7. otp_relay_attempt             — agent "needs" OTP to complete verification on client's behalf
+  8. refund_processing_assistance  — refund requires client to share card details
+</themes>
+
+<length_bins>
+short  : 20–100 tokens   (~80–400 characters)
+medium : 101–200 tokens  (~401–800 characters)
+long   : 201–400 tokens  (~801–1600 characters)
+
+Enforcement: Generate 3 candidate texts internally. Select the one
+whose token count is closest to the midpoint of the target bin.
+</length_bins>
+
+<impersonation_requirements>
+- Sender presents as a named bank employee with a specific title.
+  Examples of titles: "Senior Fraud Analyst", "Account Protection Specialist",
+  "Client Security Officer", "Verification Team Lead", "Branch Support Manager".
+- Fictional institutions only: Meridian Bank, Crestline Financial,
+  Apex Credit Union, Summit Savings, NorthPoint Financial, Vertex Bank.
+- Include at least one of: case reference, ticket ID, employee ID, extension.
+  Examples: CASE#: 2025-48271, TKT-202500913, EMP-ID: 4702, ext. 3047.
+</impersonation_requirements>
+
+<manipulation_requirements>
+Each sample must include AT LEAST TWO of:
+  a) Time pressure ("this window closes in 15 minutes",
+     "your session will expire", "we must complete this today")
+  b) Partial account detail to establish false trust
+     ("your account ending 4821", "the card registered to your profile")
+  c) Reassurance + escalated request
+     ("this is standard procedure" then request for OTP/CVV/PIN)
+  d) Isolation tactic ("please do not hang up", "stay on this chat")
+  e) Reciprocity framing ("I am here to help you avoid any loss")
+  f) OTP relay: "I will need the 6-digit code sent to your phone
+     to complete verification on my end"
+</manipulation_requirements>
+
+<anonymization_rules>
+- Names of agents: use realistic but fictional first names + last initial
+  (e.g., "Daniel K.", "Priya M.", "Marcus T.").
+- Institutions: fictional (see above).
+- Case/ticket references: fictional alphanumeric codes.
+- Phone numbers: fictional (ext. 3047, +1 800 555 0178).
+- Partial card numbers: fictional (ending 4821, ending 7703).
+- Do NOT use real personal names, real banks, or real phone numbers.
+</anonymization_rules>
+
+<style_guidelines>
+- Register: formal-professional for the opening, can soften mid-message
+  to build rapport (this is intentional social engineering realism).
+- Channel markers: brief channel-appropriate opener is optional
+  ("Hi, this is Daniel K. from Meridian Bank Security" for chat;
+  "Following up on your recent inquiry" for email thread continuation).
+- For low temperature_style: consistent formal register, limited
+  phrasing variation, predictable sentence structure across samples.
+- For high temperature_style: vary agent persona, opening tactic,
+  urgency level, and rapport-building strategy across samples.
+- Do NOT include markdown formatting. Plain text only.
+</style_guidelines>
+
+────────────────────────────────────────────────────────────────────────────────
+USER PROMPT TEMPLATE
+(fill in {placeholders} at generation time)
+────────────────────────────────────────────────────────────────────────────────
+
+Generate {n_samples} social engineering support-channel message samples.
+
+Parameters:
+  target_bin        : {target_bin}
+  temperature_style : {temperature_style}
+  start_id          : {start_id}
+
+Requirements:
+- Assign a different theme to each sample (vary themes across the batch).
+- ID format: SOCENG_{start_id}, SOCENG_... incrementing by 1.
+- Follow all rules from the system prompt exactly.
+- Output ONLY the CSV rows (including header on first row).
+
+────────────────────────────────────────────────────────────────────────────────
+EXAMPLE OUTPUT (2 rows, medium and short bins, for reference)
+────────────────────────────────────────────────────────────────────────────────
+
+id,theme,target_bin,temperature_style,text_raw,estimated_tokens
+SOCENG_001,otp_relay_attempt,medium,low,"Hi, this is Daniel K., Senior Fraud Analyst at Meridian Bank — CASE#: 2025-48271. We have detected an unauthorized login attempt on your account ending 4821 from an unrecognized device in a different region. To prevent any transactions from proceeding, I need to place an immediate hold on the account. To complete the security protocol, please provide the 6-digit verification code that has just been sent to your registered phone number. This session will time out in 10 minutes. Do not close this window. EMP-ID: 4702.",112
+SOCENG_002,wire_transfer_authorization,short,low,"This is Marcus T. from Apex Credit Union — TKT-202500913. A wire transfer of $8,500 from your account is pending authorization. Please confirm your identity by replying with the OTP sent to your device. This request expires in 8 minutes.",52
+
+================================================================================

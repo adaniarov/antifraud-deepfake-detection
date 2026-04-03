@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+data/raw/
+data/processed/
+data/final/
+outputs/checkpoints/
+outputs/logs/
+*.egg-info/
+.ruff_cache/

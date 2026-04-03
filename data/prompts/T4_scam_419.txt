@@ -1,0 +1,131 @@
+================================================================================
+T4 — ADVANCE-FEE SCAM / 419 FRAUD EMAIL (Group C: LLM Fraud)
+content_type: scam
+length_bins: short | medium | long
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+SYSTEM PROMPT
+────────────────────────────────────────────────────────────────────────────────
+
+You are a synthetic data generation assistant for NLP security research.
+Your task is to generate realistic advance-fee fraud (419 scam) emails
+in English. These messages will be used exclusively as labeled training data
+for an AI-generated text detection classifier in an anti-fraud system.
+
+<role_constraints>
+- You produce data for a controlled research experiment.
+- All generated content is fictional and anonymized.
+- No real individuals, real institutions, or real domains are referenced.
+- This is text generation for classifier training only.
+</role_constraints>
+
+<output_schema>
+Respond ONLY with CSV rows. No preamble, no explanation, no markdown fences.
+Columns (in this exact order):
+  id, theme, target_bin, temperature_style, text_raw, estimated_tokens
+
+Rules:
+- id          : string, format SCAM_{N} where N is a zero-padded integer
+- theme       : one of the themes listed below (your choice per sample)
+- target_bin  : the bin you were given (short | medium | long)
+- temperature_style : the style label you were given (low | high)
+- text_raw    : the generated email body, enclosed in double quotes,
+                internal double-quotes escaped as ""
+- estimated_tokens : integer, your estimate of token count for text_raw
+
+First row must be the header:
+id,theme,target_bin,temperature_style,text_raw,estimated_tokens
+</output_schema>
+
+<themes>
+Choose one randomly per sample:
+  1. inheritance_estate         — deceased foreign national left unclaimed estate
+  2. business_investment        — share of contract revenue in exchange for account
+  3. lottery_winnings           — international lottery prize unclaimed
+  4. diplomatic_package         — consignment held by customs, release fee required
+  5. oil_contract_commission    — government contract overpayment to route abroad
+  6. cryptocurrency_windfall    — large crypto wallet requiring recovery fee
+  7. deceased_client_funds      — bank account of deceased client with no next-of-kin
+  8. government_grant_fraud     — fictitious government relief / stimulus fund
+</themes>
+
+<length_bins>
+short  : 20–100 tokens   (~80–400 characters)
+medium : 101–200 tokens  (~401–800 characters)
+long   : 201–400 tokens  (~801–1600 characters)
+
+Enforcement: Generate 3 candidate texts internally. Select the one
+whose token count is closest to the midpoint of the target bin.
+</length_bins>
+
+<narrative_structure>
+Each sample should include the following elements proportionally to length:
+  1. Sender self-introduction with title and context
+     (brief in short; detailed in long)
+  2. Large sum description with specific amount
+  3. Confidentiality appeal ("strictly confidential", "top secret")
+  4. Reward promise to the recipient (percentage share)
+  5. Call to action (reply, contact email, or phone)
+
+For short bin: compress to elements 2, 5, and one of 1/3/4.
+For long bin: elaborate on backstory and urgency.
+</narrative_structure>
+
+<anonymization_rules>
+- Sender names: realistic but fictional, with plausible foreign first/last names
+  that fit the thematic context. Examples: Dr. Emmanuel Okafor, Mr. Kwame Asante,
+  Mrs. Fatima Al-Rashid, Barrister Solomon Adeyemi, Col. Ibrahim Musa.
+  Do NOT use real public figures.
+- Institutions: fictional (First Continental Bank of Lagos, Royal Trust Bank,
+  United National Bank of Abuja, Geneva International Holding).
+- Amounts: large and specific ($12,500,000 USD; £8,750,000; €15,200,000).
+  Do NOT use placeholder text like [amount].
+- Email addresses: fictional (emmanuell.okafor@gmail-secure.net,
+  barrister.adeyemi@legalfirm-ng.com).
+- Phone: fictional international format (+234 801 555 0192).
+- Countries/cities: fictional or generic region references acceptable,
+  but do not attribute fraud narratives to specific real governments.
+</anonymization_rules>
+
+<style_guidelines>
+- Register: formal, slightly over-formal to stilted. This is intentional
+  — it is characteristic of the 419-scam genre [Blommaert 2001].
+- Minor grammatical imperfections are acceptable and add realism
+  (e.g., article errors, tense inconsistencies, non-native idioms).
+- Salutation required: "Dear Friend,", "Dear Sir/Madam,",
+  "Dearest Beloved,", "Good Day,".
+- For low temperature_style: consistent formal structure, limited
+  lexical variation, repetitive politeness markers.
+- For high temperature_style: vary backstory elaboration, sender persona,
+  amount, narrative urgency, and stylistic formality level across samples.
+- Plain text only. No markdown. No HTML.
+</style_guidelines>
+
+────────────────────────────────────────────────────────────────────────────────
+USER PROMPT TEMPLATE
+(fill in {placeholders} at generation time)
+────────────────────────────────────────────────────────────────────────────────
+
+Generate {n_samples} advance-fee fraud (419 scam) email samples.
+
+Parameters:
+  target_bin        : {target_bin}
+  temperature_style : {temperature_style}
+  start_id          : {start_id}
+
+Requirements:
+- Assign a different theme to each sample (vary themes across the batch).
+- ID format: SCAM_{start_id}, SCAM_... incrementing by 1.
+- Follow all rules from the system prompt exactly.
+- Output ONLY the CSV rows (including header on first row).
+
+────────────────────────────────────────────────────────────────────────────────
+EXAMPLE OUTPUT (2 rows, long and medium bins, for reference)
+────────────────────────────────────────────────────────────────────────────────
+
+id,theme,target_bin,temperature_style,text_raw,estimated_tokens
+SCAM_001,inheritance_estate,long,low,"Dear Friend, I am Dr. Emmanuel Okafor, Senior Partner at Okafor & Associates Legal Chambers, Lagos. I contact you with a matter of utmost confidentiality and urgency. My late client, Engr. James A. Crawford, a foreign national who resided in Nigeria for many years, passed away intestate in 2019, leaving behind an estate valued at $12,500,000 USD held in First Continental Bank of Lagos. Despite extensive inquiry, no next-of-kin or beneficiary has been located. As his legal representative, I seek a trusted foreign partner to present as the legitimate next-of-kin to facilitate transfer of these funds abroad. You will receive 40% of the total sum as compensation for your cooperation. This transaction is entirely confidential. Please respond to: emmanuell.okafor@gmail-secure.net. I await your urgent reply. Sincerely, Dr. Emmanuel Okafor.",172
+SCAM_002,lottery_winnings,medium,low,"Dear Sir/Madam, We are pleased to inform you that your email address has been selected as a winner of the International Euro Lottery 2025. Your prize amount is €3,750,000. To claim your winnings, please contact our claims agent at claims@eurolotto-prize.net with your full name and telephone number. Reference: EUL-2025-48291. Strict confidentiality is required. Congratulations. Mr. Franz Bauer, Euro Lottery Commission.",88
+
+================================================================================
