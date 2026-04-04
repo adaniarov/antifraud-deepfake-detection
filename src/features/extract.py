@@ -400,6 +400,11 @@ def extract_split(
     feature_df["origin_model"]   = [r.get("origin_model") or "" for r in records]
     feature_df["dataset_source"] = [r.get("dataset_source", "") for r in records]
     feature_df["split"]          = split
+    # Preserve _companion flag for partition-based test evaluation
+    if split == "test":
+        feature_df["_companion"] = [
+            r.get("_companion", False) for r in records
+        ]
 
     logger.success(f"[{split}] done — {len(feature_df):,} records, "
                    f"{len(feature_df.columns):,} columns")
@@ -541,4 +546,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     splits = SPLITS if args.split == "all" else [args.split]
+    
     main(splits_to_run=splits, compute_ppl=not args.no_perplexity)

@@ -6,6 +6,7 @@ __pycache__/
 data/raw/
 data/processed/
 data/final/
+data/features/
 outputs/checkpoints/
 outputs/logs/
 *.egg-info/
