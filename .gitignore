@@ -8,6 +8,25 @@ data/processed/
 data/final/
 data/features/
 outputs/checkpoints/
+outputs/predictions/
 outputs/logs/
 *.egg-info/
 .ruff_cache/
+
+# Tests / coverage / typing
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML experiment trackers (если появятся)
+wandb/
+mlruns/
+lightning_logs/
+
+# Тяжёлые артефакты визуализации (пересобираются скриптами)
+outputs/figures/*.zip
