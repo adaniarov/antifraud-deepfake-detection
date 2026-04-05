@@ -1,0 +1,12 @@
+---
+description: Rules for thesis writing tasks
+globs:
+  - "docs/**/*.md"
+  - "**/*.tex"
+alwaysApply: false
+---
+
+Use formal academic Russian unless the user explicitly requests another style.
+Do not fabricate numbers.
+Mention dataset limitations when they affect interpretation.
+Prefer cautious wording over strong claims.

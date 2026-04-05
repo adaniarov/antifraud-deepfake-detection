@@ -1,0 +1,13 @@
+---
+description: Rules for ML experiment and evaluation code
+globs:
+  - "src/**/*.py"
+  - "configs/**/*"
+alwaysApply: false
+---
+
+Do not silently change labels or split logic.
+Do not move held-out Claude examples into train or val.
+Treat temperature as API parameter only.
+Preserve symmetric URL masking assumptions.
+Prefer explicit configs and deterministic seeds.

@@ -1,0 +1,13 @@
+---
+description: Global rules for this thesis repository
+globs:
+alwaysApply: true
+---
+
+Read `AGENTS.md` and `docs/project_status.md` before making non-trivial changes.
+
+Never invent metric values.
+Never claim experimental results without pointing to a real file.
+Preserve dataset semantics and held-out evaluation logic.
+Prefer minimal diffs and reproducible code.
+When discussing findings, separate evidence from hypothesis.

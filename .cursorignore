@@ -1,0 +1,12 @@
+# .cursorignore
+.venv/
+venv/
+__pycache__/
+.ipynb_checkpoints/
+outputs/checkpoints/
+data/raw/
+data/intermediate/
+*.pt
+*.bin
+*.parquet
+*.feather
