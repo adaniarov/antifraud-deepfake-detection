@@ -1,0 +1,7 @@
+scenario_family,count
+phishing_email,7200
+legitimate_email,4000
+financial_qa,3910
+advance_fee_scam_email,3200
+fraud_sms_deceptive,2394
+legitimate_sms,1273

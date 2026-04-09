@@ -1,0 +1,12 @@
+Source,N_raw,N_unique,Dup%,Year_span,Med_words,URL%,Author,Fraud_Legit,content_type,Group
+Nazario,8472,5820,31%,1999–2025,136,48%,Human,Fraud,phishing_email,A
+SMS spam,747,642,14%,2006–2006,25,3%,Human,Fraud,smishing,A
+SMS ham,4827,4518,6%,2006–2006,11,0%,Human,Legit,legitimate_sms,B
+Enron spam (419 filter),872,731,16%,2000–2000,513,0%,Human,Fraud,scam_419,A
+Enron ham,16545,15794,5%,2000–2000,169,0%,Human,Legit,legitimate_email,B
+SpamAssassin spam,3293,1630,51%,1997–2020,154,54%,Human,Fraud,general_spam,A?
+SpamAssassin ham,3900,3861,1%,2002–2028,137,86%,Human,Legit,legitimate_email,B
+HC3 Finance (human),3933,3933,0%,2008–2008,129,7%,Human,Legit,financial_qa,B
+HC3 Finance (chatgpt),4503,4462,1%,2022–2022,205,0%,LLM,Legit,financial_qa,D
+HC3 Open QA (human),1187,1171,1%,2008–2008,27,0%,Human,Legit,open_qa,B?
+HC3 Open QA (chatgpt),3546,3518,1%,2022–2022,106,0%,LLM,Legit,open_qa,D?

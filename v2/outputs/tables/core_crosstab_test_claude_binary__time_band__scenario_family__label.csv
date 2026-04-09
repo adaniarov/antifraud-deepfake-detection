@@ -1,0 +1,8 @@
+time_band,scenario_family,0,1
+legacy,advance_fee_scam_email,400,0
+legacy,legitimate_email,500,0
+legacy,legitimate_sms,196,0
+modern,advance_fee_scam_email,0,400
+modern,legitimate_email,0,500
+modern,legitimate_sms,0,196
+modern,phishing_email,750,750

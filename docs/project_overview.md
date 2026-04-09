@@ -46,3 +46,7 @@ Anti-fraud messages only:
 - ensemble comparison
 - robustness experiments
 - thesis chapters and prototype
+
+## Alignment with agreed thesis outline (methods + experiments)
+- **Methods (thesis Ch. 3):** classical feature engineering and TF-IDF vectorization are implemented; perplexity features exist in code but the published baseline table excludes them; neural methods (pretrained embeddings, fine-tuning, DistilBERT-style speed trade-offs) are **not yet** in the training pipeline.
+- **Experiments (thesis Ch. 4):** fixed train/val/test evaluation and partition metrics are implemented; **k-fold cross-validation** and a **full comparative feature-importance study** (e.g. SHAP) are **not** part of the current baseline reporting—see `docs/project_status.md` for the exact status.

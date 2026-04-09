@@ -1,0 +1,46 @@
+{
+  "scenario_family": "phishing_email",
+  "version": "7.0",
+  "channel": "email",
+  "fraudness": "fraud",
+  "length_bins": [
+    "short",
+    "medium",
+    "long"
+  ],
+  "length_bin_word_guide": {
+    "short": "24–70 words",
+    "medium": "75–160 words",
+    "long": "200–460 words"
+  },
+  "subtypes": [
+    "account_suspension",
+    "suspicious_activity_or_login",
+    "invoice_or_payment_lure",
+    "kyc_or_identity_update",
+    "account_verification",
+    "password_reset",
+    "refund_or_reward_lure",
+    "card_verification_or_card_issue",
+    "nonfinancial_phishing"
+  ],
+  "subtype_weights": {
+    "account_suspension": 0.18,
+    "suspicious_activity_or_login": 0.17,
+    "invoice_or_payment_lure": 0.1,
+    "kyc_or_identity_update": 0.1,
+    "account_verification": 0.07,
+    "password_reset": 0.05,
+    "refund_or_reward_lure": 0.05,
+    "card_verification_or_card_issue": 0.11,
+    "nonfinancial_phishing": 0.17
+  },
+  "system_prompt": "You are an email writer. Write realistic phishing emails in English for AI-text detection research.\n\nThe goal is to match rougher human phishing-email register, not polished modern customer-support, billing, or helpdesk mail.\n\nCore rules:\n- Output only the email body — no Subject line, no From/To/Date headers\n- Replace all URLs with [URL], all email addresses with [EMAIL], and all phone numbers with [PHONE]\n- Use entirely fictional company names, institutions, products, and identities\n- Do not include markdown, HTML, bullet lists, JSON, labels, or explanations\n- The message must remain phishing: impersonation, urgency, account trouble, payment issue, verification lure, reward lure, or similar CTA\n- Occasional typos, awkward wording, clumsy formatting, inconsistent capitalization, slightly noisy legacy-email feel are acceptable if they improve realism\n- Do not make every message clean, fluent, polished, friendly, or professionally edited\n- Avoid customer-care / helpdesk / billing-department / shipping-support tone\n- Avoid polite service reassurance, “if you have questions contact us”, “if payment already sent disregard”, “reply to this email”, “call our department”, and other legitimate support/billing language\n- For `invoice_or_payment_lure`, the message must feel coercive and spoofed, not like a normal collections, retailer, or shipping-notification email\n- For `account_verification`, avoid step-by-step friendly guidance and avoid soft explanatory phrasing; the tone should be sharper and more pressuring\n- For long `nonfinancial_phishing`, keep the message sharp and pressuring rather than supportive/explanatory\n- Vary the opening style; not every email should begin with “Dear User”, “Attention Customer”, or another generic service salutation\n- Do not write cleaner or more professional than the examples below\n\nStyle examples (match register, not wording):\n\n[Example 1 — account_verification]\nACCOUNT PROBLEM NOTICE\nyour verification on file fail. if not complete now access will be limited. confirm details here [URL] no delay.\n\n[Example 2 — suspicious_activity_or_login]\nAlert from webmail server. unusual sign in was detected on your account. if this was not you then verify now [URL] or account can be blocked.\n\n[Example 3 — invoice_or_payment_lure]\nFINAL NOTICE.\npayment not receive on invoice record. if not update today account can be disabled and service stopped. review invoice now [URL]\n\n[Example 4 — refund_or_reward_lure]\nRefund processing failed due account mismatch. update details now [URL] or refund case will be closed today.\n\n[Example 5 — nonfinancial_phishing]\nSECURITY BREACH WARNING\nyour access profile need urgent confirmation. if ignored, account may be limited and data can be lost. confirm now [URL]\n",
+  "user_template": "Write a phishing email of type \"{subtype}\".\nTarget length: {length_bin} (approximately {length_hint}).\nMatch the roughness and manipulative tone of the inline examples. Do not write cleaner than they are.\nAvoid customer-support, billing, retailer, shipping, or helpdesk language. Vary the opening style.\nOutput only the email body — no subject line, no headers.",
+  "few_shot_anchors": {
+    "account_suspension": [
+      "We are deactivating your account today. Confirm if your [EMAIL] is still active with the button below to enable us to secure your account. SECURE YOUR ACCOUNT [URL] If you do not confirm within 24 hours, your account will be permanently suspended."
+    ]
+  },
+  "design_notes": "v7 is a narrow cleanup pass focused on suppressing billing/helpdesk drift, especially in invoice_or_payment_lure, and reducing explanatory softness in account_verification."
+}

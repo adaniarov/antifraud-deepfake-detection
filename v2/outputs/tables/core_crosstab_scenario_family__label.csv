@@ -1,0 +1,7 @@
+scenario_family,0,1
+advance_fee_scam_email,1600,2000
+financial_qa,800,800
+fraud_sms_deceptive,852,1065
+legitimate_email,2000,2500
+legitimate_sms,786,982
+phishing_email,3000,3750

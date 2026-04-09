@@ -1,0 +1,12 @@
+,enron_spam,sa_spam,enron_ham,sa_ham
+business_email,0,0,5609,162
+candidate_419_or_advance_fee,801,219,0,0
+generic_spam_nonphishing,10918,1103,0,0
+informational_notification_email,0,0,7773,207
+malware_or_attachment_lure,378,87,0,0
+mixed_or_unclear,0,0,2716,3376
+personal_email,0,0,249,121
+phishing_email,1814,1210,0,0
+promo_marketing_email,2749,598,0,0
+service_or_system_email,0,0,198,34
+unclear_other,511,76,0,0

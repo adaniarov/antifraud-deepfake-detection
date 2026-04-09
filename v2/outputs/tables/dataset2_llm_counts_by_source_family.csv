@@ -1,0 +1,5 @@
+source_family,count
+llm_holdout_claude,8881
+llm_seen_openai,5498
+hc3_finance,3910
+llm_seen_mistral,3688

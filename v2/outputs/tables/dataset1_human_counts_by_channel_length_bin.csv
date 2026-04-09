@@ -1,0 +1,10 @@
+channel,length_bin,count
+email,long,7153
+email,medium,12672
+email,short,7450
+qa,long,1140
+qa,medium,1974
+qa,short,818
+sms,long,167
+sms,medium,2144
+sms,short,2602

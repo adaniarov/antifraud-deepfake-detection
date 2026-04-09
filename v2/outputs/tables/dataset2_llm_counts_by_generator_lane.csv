@@ -1,0 +1,5 @@
+generator_lane,count
+holdout_claude,8881
+seen_openai,5498
+(financial_qa / no lane),3910
+seen_mistral,3688

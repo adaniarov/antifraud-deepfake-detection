@@ -1,0 +1,7 @@
+scenario_family,test,train,val
+advance_fee_scam_email,720,2400,480
+financial_qa,164,1198,238
+fraud_sms_deceptive,385,1278,254
+legitimate_email,900,3000,600
+legitimate_sms,356,1178,234
+phishing_email,1350,4500,900

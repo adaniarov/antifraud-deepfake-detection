@@ -1,0 +1,38 @@
+# --- Секреты и локальная конфигурация (никогда в репозиторий) ---
+.env
+.env.*
+!.env.example
+
+# --- Крупные и сырьевые данные (восстанавливаются пайплайном; не API-ключи) ---
+data/raw/
+data/interim/
+data/final/
+data/features/
+
+# --- Стандартные артефакты разработки ---
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML trackers
+mlruns/
+wandb/
+lightning_logs/
+
+# Модели / тяжёлые эксперименты (при появлении)
+outputs/checkpoints/
+outputs/predictions/
+outputs/logs/
+
+# Не игнорируем: outputs/tables/, outputs/figures/, data/prompts/, data/docs/

@@ -1,0 +1,7 @@
+split,label_str,count,mean_words,median_words,std_words,mean_chars,median_chars
+test,Human,3562,230.5,125.0,570.5,1275.4,683.0
+test,LLM,3041,93.0,66.0,82.5,618.1,436.0
+train,Human,5329,193.9,104.0,458.1,1246.1,616.0
+train,LLM,5329,99.2,72.0,75.1,604.0,441.0
+val,Human,866,179.6,109.5,280.8,1175.6,611.0
+val,LLM,866,96.5,72.0,70.0,588.8,437.0

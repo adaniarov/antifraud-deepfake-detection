@@ -1,0 +1,5 @@
+generator_lane,test,train,val
+(none),990,7376,1472
+holdout_claude,2059,0,0
+seen_mistral,333,2477,495
+seen_openai,493,3701,739

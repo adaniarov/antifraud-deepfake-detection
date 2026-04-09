@@ -1,0 +1,6 @@
+channel,fraudness,count
+email,fraud,10400
+email,legitimate,4000
+qa,legitimate,3910
+sms,fraud,2394
+sms,legitimate,1273

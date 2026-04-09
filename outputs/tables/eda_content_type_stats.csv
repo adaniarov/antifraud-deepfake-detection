@@ -1,0 +1,15 @@
+content_type,label_str,count,mean_words,median_words
+bank_notification,LLM,1388,52.8,41.0
+financial_qa,Human,861,181.6,136.0
+financial_qa,LLM,1114,205.7,205.5
+financial_review,LLM,1167,79.5,68.0
+legitimate,Human,4304,191.7,71.0
+legitimate,LLM,1548,120.4,108.0
+phishing,Human,937,257.2,207.0
+phishing,LLM,1302,59.1,50.0
+review,Human,1284,137.3,105.0
+scam_419,LLM,986,137.6,96.0
+smishing,Human,336,24.3,25.0
+smishing,LLM,395,18.3,18.0
+social_engineering,LLM,1336,70.2,61.0
+spam,Human,2035,296.2,149.0

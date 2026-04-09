@@ -1,0 +1,10 @@
+source_family,scenario_family,0,1
+enron_ham,legitimate_email,419,0
+llm_holdout_claude,advance_fee_scam_email,0,400
+llm_holdout_claude,legitimate_email,0,500
+llm_holdout_claude,legitimate_sms,0,196
+llm_holdout_claude,phishing_email,0,750
+nazario,phishing_email,750,0
+nigerian_fraud,advance_fee_scam_email,400,0
+sms_ham,legitimate_sms,196,0
+spamassassin_ham,legitimate_email,81,0

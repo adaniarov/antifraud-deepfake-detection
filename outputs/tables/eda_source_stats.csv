@@ -1,0 +1,11 @@
+origin_model,split,label_str,count,mean_words,median_words
+anthropic/claude-haiku-4-5,test,LLM,2574,92.0,65.0
+chatgpt,train,LLM,2130,156.8,156.0
+mistralai/mistral-small-3.2-24b-instruct,train,LLM,1602,74.0,58.0
+gpt-4o-mini,train,LLM,1597,47.8,45.0
+chatgpt,val,LLM,346,152.4,153.0
+gpt-4o-mini,val,LLM,267,47.7,46.0
+mistralai/mistral-small-3.2-24b-instruct,val,LLM,253,71.6,59.0
+chatgpt,test,LLM,186,154.8,140.5
+mistralai/mistral-small-3.2-24b-instruct,test,LLM,145,73.2,61.0
+gpt-4o-mini,test,LLM,136,49.5,49.0

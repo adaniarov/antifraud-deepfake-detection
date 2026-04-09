@@ -1,0 +1,7 @@
+fraudness,split,0,1
+fraud,test,546,1909
+fraud,train,4089,4089
+fraud,val,817,817
+legitimate,test,362,1058
+legitimate,train,2688,2688
+legitimate,val,536,536

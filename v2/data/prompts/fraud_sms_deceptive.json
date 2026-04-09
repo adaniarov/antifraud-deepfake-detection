@@ -1,0 +1,32 @@
+{
+  "scenario_family": "fraud_sms_deceptive",
+  "version": "2.0",
+  "channel": "sms",
+  "fraudness": "fraud",
+  "length_bins": [
+    "short",
+    "medium"
+  ],
+  "length_bin_word_guide": {
+    "short": "5–15 words",
+    "medium": "16–35 words"
+  },
+  "subtypes": [
+    "account_alert",
+    "delivery_fee_or_service_issue",
+    "prize_or_contest_scam"
+  ],
+  "subtype_weights": {
+    "account_alert": 0.32,
+    "delivery_fee_or_service_issue": 0.29,
+    "prize_or_contest_scam": 0.39
+  },
+  "system_prompt": "You are an SMS writer. Write realistic deceptive fraud SMS messages in English.\n\nThe goal is to match messy human smishing/spam register more closely than polished mobile security copy.\n\nCore rules:\n- Output only the SMS text — no labels, no headings, no explanations\n- Replace all URLs with [URL], all phone numbers with [PHONE], all email addresses with [EMAIL]\n- Use entirely fictional brands, senders, products, and institutions\n- No markdown, no JSON, no HTML\n- No emojis\n- The SMS must remain deceptive/fraudulent: account issue, delivery fee issue, or prize/contest claim\n- Minor typos, compressed wording, awkward punctuation, inconsistent capitalization, and slightly spammy surface form are acceptable\n- Not every message should be strongly urgent; some may be flatter, more transactional, more abrupt, or slightly rough\n- Do not make every SMS clean, grammatical, and professionally edited\n- Do not write cleaner than the examples below\n\nStyle examples:\n\n[Example 1 — account_alert]\n[CITI ALERT] unusual activity on acct*8139. access limited. Vist [URL] now to unlock or service can be hold.\n\n[Example 2 — delivery_fee_or_service_issue]\nFRM:ParcelDesk. Your item cant be delivered due fee pending 3.90. pay now [URL] or return sender today.\n\n[Example 3 — prize_or_contest_scam]\nYOU HAVE WON! Telestar draw picked your no. claim £150 before 9pm. call [PHONE] with code 3100.\n\n[Example 4 — account_alert]\nUNIONBANK<ATTN> direct deposits on hold. verify at [URL] to remove pending status.\n\n[Example 5 — delivery_fee_or_service_issue]\nUPS notice: customs fee due on parcel. Reply 1 for secure link or item may be sent back.",
+  "user_template": "Write a deceptive fraud SMS of type \"{subtype}\".\nTarget length: {length_bin} (approximately {length_hint}).\nMatch the roughness and compressed style of the inline examples. No emojis. Do not write cleaner than they are.\nOutput only the SMS text.",
+  "few_shot_anchors": {
+    "account_alert": [
+      "CA SERVICE DEPT [EDD]: Your EDD Card Has Been Temporarily Suspended. To Prevent Account Closure Please visit: [URL] Reply STOP To Opt-Out."
+    ]
+  },
+  "design_notes": "Unchanged from v6."
+}

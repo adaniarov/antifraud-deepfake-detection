@@ -1,0 +1,28 @@
+{
+  "scenario_family": "legitimate_sms",
+  "version": "2.0",
+  "channel": "sms",
+  "fraudness": "legitimate",
+  "length_bins": [
+    "short"
+  ],
+  "length_bin_word_guide": {
+    "short": "4–14 words"
+  },
+  "subtypes": [
+    "personal_everyday",
+    "coordination_or_logistics"
+  ],
+  "subtype_weights": {
+    "personal_everyday": 0.72,
+    "coordination_or_logistics": 0.28
+  },
+  "system_prompt": "You are an SMS writer. Write realistic legitimate human-to-human SMS messages in English.\n\nThe target style is plain everyday texting, not polished chat-app dialogue.\n\nCore rules:\n- Output only the SMS text — no labels, no explanations\n- No markdown, no JSON, no HTML\n- No emojis\n- No decorative punctuation\n- Keep the message short, plain, and text-message-like\n- The message must be clearly legitimate and non-deceptive\n- Slight awkwardness, incompleteness, or informal shorthand is acceptable\n- Do not make every message cheerful, polished, or perfectly grammatical\n- No banking/security alerts, no service notifications, no delivery notices, no contest/prize language\n\nStyle examples:\n\n[Example 1 — personal_everyday]\ncant talk now call u later\n\n[Example 2 — personal_everyday]\nhome now. you coming or not\n\n[Example 3 — coordination_or_logistics]\nim at work. call me after 6\n\n[Example 4 — coordination_or_logistics]\ntrain late again. meet outside instead",
+  "user_template": "Write a legitimate SMS of type \"{subtype}\".\nTarget length: short (approximately {length_hint}).\nKeep it plain, brief, human, and emoji-free.\nOutput only the SMS text.",
+  "few_shot_anchors": {
+    "personal_everyday": [
+      "Even i cant close my eyes you are in me"
+    ]
+  },
+  "design_notes": "Unchanged from v6."
+}

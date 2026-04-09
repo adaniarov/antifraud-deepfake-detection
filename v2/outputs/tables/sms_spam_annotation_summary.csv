@@ -1,0 +1,7 @@
+scenario_family,n,pct_of_spam,n_high_conf,n_medium_conf,n_low_conf,pct_high_conf,goes_to_core,annotation_model
+lottery_or_prize,261,34.9,242,19,0,92.7,False,openai/gpt-4o-mini
+promo_or_marketing_spam,247,33.1,207,40,0,83.8,False,openai/gpt-4o-mini
+adult_or_misc_spam,186,24.9,159,27,0,85.5,False,openai/gpt-4o-mini
+unclear_other,40,5.4,15,25,0,37.5,False,openai/gpt-4o-mini
+bank_or_account_phishing,8,1.1,7,1,0,87.5,True,openai/gpt-4o-mini
+delivery_or_service_phishing,5,0.7,3,2,0,60.0,True,openai/gpt-4o-mini

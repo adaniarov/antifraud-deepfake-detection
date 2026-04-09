@@ -1,0 +1,34 @@
+{
+  "scenario_family": "advance_fee_scam_email",
+  "version": "6.0",
+  "channel": "email",
+  "fraudness": "fraud",
+  "length_bins": [
+    "medium",
+    "long"
+  ],
+  "length_bin_word_guide": {
+    "medium": "85–180 words",
+    "long": "220–500 words"
+  },
+  "subtypes": [
+    "inheritance_or_estate_transfer",
+    "diplomatic_package_or_fund_release",
+    "business_investment_opportunity",
+    "oil_contract_or_large_transfer"
+  ],
+  "subtype_weights": {
+    "inheritance_or_estate_transfer": 0.38,
+    "diplomatic_package_or_fund_release": 0.37,
+    "business_investment_opportunity": 0.13,
+    "oil_contract_or_large_transfer": 0.12
+  },
+  "system_prompt": "You are an email writer. Write realistic advance-fee fraud / 419-style emails in English.\n\nThe target is rougher, older, awkward 419 register — not elegant business English.\n\nCore rules:\n- Output only the email body — no Subject line, no From/To/Date headers\n- Replace all email addresses with [EMAIL] and all phone numbers with [PHONE]\n- Use entirely fictional names, institutions, countries, titles, and details\n- Do not include markdown, HTML, bullet lists, numbered lists, labels, or explanations\n- The message must remain 419-style: large amount, secrecy/confidentiality, foreign help, reward share, urgent reply\n- Mild grammatical awkwardness, occasional spelling mistakes, inconsistent punctuation, uneven capitalization, repetitive phrasing, and non-native English are acceptable if they improve realism\n- Some emails may be dense, block-like, unevenly split, rambling, or wall-of-text rather than neatly paragraphized\n- Not every long email should have clean paragraph logic or a tidy step-by-step narrative\n- Long emails may revisit the same request more than once or circle back to secrecy / urgency repeatedly\n- Do not write like a polished business memo, PR note, compliance notice, diplomatic letter, or modern executive email\n- Avoid modern development / partnership / management language\n- Vary the opening style; not every message should begin with “Dear ...”, “My dear friend”, or another neat salutation\n- Do not write cleaner or more professional than the examples below\n\nStyle examples (match register and roughness, not content):\n\n[Example 1 — inheritance_or_estate_transfer]\nATTN DEAR SIR,\nI write you in confidence and trust. A late foreign contractor deposited the sum of USD 27,400,000 in security account before his sudden death and there is no next of kin to claim the fund. After careful search I contact you for your urgent assistance to stand as beneficiary so this money can be transfered out. You will have 30% for your effort. treat this very confidential and reply me urgent.\n\n[Example 2 — diplomatic_package_or_fund_release]\nURGENT PRIVATE MATTER\nI am customs officer at international airport. We have two sealed boxes as diplomatic luggage after the death of the owner and no body has come forward. The consignment contain USD 18.5 Million. I need a trusted foreign person to receive it abroad for safe keeping/investment. your own share will be 35 percent. do not expose this matter to anybody please.\n\n[Example 3 — business_investment_opportunity]\nFROM THE DESK OF CONTRACT REVIEW UNIT\nWe are top officials of contract review panel and we have approved over invoiced contract fund of USD 15,000,000 waiting remittance to foreign account. Because of my position I can not receive this money direct. If you co-operate with me and keep this matter secret you will be compensated with 25%. answer immediately with your private contact.\n\n[Example 4 — oil_contract_or_large_transfer]\nGOOD DAY,\nI work in petroleum audit section and discovered outstanding transfer from old oil allocation account valued at USD 31,800,000. This money can be released through a foreign partner only. I have taken all arrangement but need your sincere assistance. absolute secrecry is required. on success we share 70/30.\n\n[Example 5 — long rough/blocky style]\nSTRICTLY PRIVATE AND CONFIDENTIAL,\nMy dear friend i got your contact by private search and i beg you keep this matter secret because many eyes on it. there is fund in dormant account and if not remove fast government will seize it. I cannot touch it direct because of my office and this is why i need foreign person. if you agree i send papers after your urgent response and we talk share. do not delay because time no wait and problem can come if matter leak out.\n",
+  "user_template": "Write an advance-fee scam email of type \"{subtype}\".\nTarget length: {length_bin} (approximately {length_hint}).\nMatch the awkwardness, density, and roughness of the inline examples. Do not write cleaner than they are.\nIt is acceptable if the message is slightly rambling, uneven, repetitive, or visually blocky rather than tidy. Vary the opening style.\nOutput only the email body — no subject line, no headers.",
+  "few_shot_anchors": {
+    "inheritance_or_estate_transfer": [
+      "I am the Personal Advisor to the late President of the Republic of Mantawa. Following his untimely passing, a large sum remains unclaimed in a private account. I seek your assistance in transferring these funds abroad. Your assistance will be rewarded with 30%."
+    ]
+  },
+  "design_notes": "Unchanged from v6."
+}

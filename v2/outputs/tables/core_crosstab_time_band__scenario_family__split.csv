@@ -1,0 +1,13 @@
+time_band,scenario_family,test,train,val
+legacy,advance_fee_scam_email,160,1200,240
+legacy,financial_qa,82,599,119
+legacy,fraud_sms_deceptive,86,639,127
+legacy,legitimate_email,200,1500,300
+legacy,legitimate_sms,80,589,117
+legacy,phishing_email,151,1129,225
+modern,advance_fee_scam_email,560,1200,240
+modern,financial_qa,82,599,119
+modern,fraud_sms_deceptive,299,639,127
+modern,legitimate_email,700,1500,300
+modern,legitimate_sms,276,589,117
+modern,phishing_email,1199,3371,675

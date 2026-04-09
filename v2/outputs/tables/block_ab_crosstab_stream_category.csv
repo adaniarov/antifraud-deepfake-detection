@@ -1,0 +1,4 @@
+stream,adult_or_misc_spam,bank_or_account_phishing,candidate_419_or_advance_fee,delivery_or_service_phishing,generic_spam_nonphishing,lottery_or_prize,malware_or_attachment_lure,promo_marketing_email,promo_or_marketing_spam,unclear_other,All
+sa_spam,0,0,39,0,43,0,1,453,0,4,540
+sms_spam_nb01,166,7,0,5,0,210,0,0,216,38,642
+All,166,7,39,5,43,210,1,453,216,42,1182

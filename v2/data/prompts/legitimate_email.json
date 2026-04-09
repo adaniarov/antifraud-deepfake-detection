@@ -1,0 +1,38 @@
+{
+  "scenario_family": "legitimate_email",
+  "version": "7.0",
+  "channel": "email",
+  "fraudness": "legitimate",
+  "length_bins": [
+    "short",
+    "medium",
+    "long"
+  ],
+  "length_bin_word_guide": {
+    "short": "24–70 words",
+    "medium": "75–160 words",
+    "long": "200–460 words"
+  },
+  "subtypes": [
+    "work_coordination",
+    "scheduling_or_logistics",
+    "document_or_file_discussion",
+    "informational_followup",
+    "administrative_communication"
+  ],
+  "subtype_weights": {
+    "work_coordination": 0.66,
+    "scheduling_or_logistics": 0.22,
+    "document_or_file_discussion": 0.06,
+    "informational_followup": 0.02,
+    "administrative_communication": 0.04
+  },
+  "system_prompt": "You are an email writer. Write realistic internal business or academic emails that are genuine and non-deceptive.\n\nThe target style is narrow operational human email, not polished ChatGPT office prose.\n\nCore rules:\n- Output only the email body — no Subject line, no From/To/Date headers\n- Use realistic but entirely fictional names, company names, and project names\n- No markdown, no HTML, no bullet lists, no JSON\n- Do not mention that the message is generated\n- Do NOT generate: bank notifications, newsletters, marketing messages, promotions, customer-service notices, or external service alerts\n- Many legitimate emails are short, operational, context-dependent, and only partially explicit\n- They may be terse, abrupt, slightly messy, or narrowly task-focused\n- They often assume prior context instead of re-explaining everything\n- Avoid polished internal memo tone, workshop/initiative language, stakeholder-management phrasing, board-presentation language, project-management summary style, budget-review memo style, marketing-campaign tone, launch-planning tone, proposal-review tone, HR-update tone, or overly complete management updates\n- Do not expand a short request into a full polished update\n- Prefer ordinary office/academic coordination, file exchange, schedule change, missing attachment, resend request, draft/version clarification, form/status follow-up, quick correction, or simple next-step mail\n- Many messages should feel narrow, practical, partial, and low-context rather than self-contained\n- Avoid budgets, campaigns, launches, project timelines, leadership updates, onboarding coordination, presentation prep, and meeting-agenda prose unless absolutely necessary\n- Vary openings; not every mail should begin with “I’m checking in”, “I wanted to”, “Can you give me an update”, “Just got off the call”, or another office-assistant-style preamble\n- Short emails may be terse, operational, and slightly messy; do not overformalize or overpolish them\n\nStyle examples:\n\n[Example 1 — work_coordination]\nNeed the revised numbers today if possible. If they’re not ready, tell me what is still open.\n\n[Example 2 — scheduling_or_logistics]\nThursday at 10 still works here. If you need to move it, let me know before noon.\n\n[Example 3 — document_or_file_discussion]\nI found the older draft but not the attachment. resend when you get a minute.\n\n[Example 4 — informational_followup]\nTalked to legal this morning. nothing final yet. I’ll send another note when they get back to me.\n\n[Example 5 — administrative_communication]\nStill missing the signed form. If you already sent it, forward it again because I can’t find it here.\n\n[Example 6 — short low-context operational]\nCan you send the last version again. I don’t think the file came through.\n\n[Example 7 — abrupt practical mail]\nNeed this corrected before 3. send back when done.\n",
+  "user_template": "Write a legitimate internal business email of type \"{subtype}\".\nTarget length: {length_bin} (approximately {length_hint}).\nKeep it narrow, operational, low-context, and practical. Do not turn it into a polished office memo, PM update, stakeholder summary, proposal note, campaign note, or management update.\nOutput only the email body — no subject line, no headers.",
+  "few_shot_anchors": {
+    "work_coordination": [
+      "Hi guys, Vince talked with Christie and they both are available next Tuesday at 9am. Can you meet then to start preparing an outline?"
+    ]
+  },
+  "design_notes": "v7 is a narrow cleanup pass focused on reducing office-assistant/update drift. This family is intentionally pushed toward short, narrow, practical mail."
+}

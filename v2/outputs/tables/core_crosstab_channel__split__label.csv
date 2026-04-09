@@ -1,0 +1,10 @@
+channel,split,0,1
+email,test,660,2310
+email,train,4950,4950
+email,val,990,990
+qa,test,82,82
+qa,train,599,599
+qa,val,119,119
+sms,test,166,575
+sms,train,1228,1228
+sms,val,244,244

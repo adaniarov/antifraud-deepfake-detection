@@ -3,9 +3,11 @@
 ## Priority queue
 
 ### P0
+- Classical thesis §4.2: add stratified k-fold CV (protocol + stored metrics) **or** document why a single split is sufficient; extend interpretability beyond hand-crafted XGBoost gain (e.g. SHAP on subsample, permutation importance, or coefficient analysis for sparse LR)
 - Implement automated per-content-type evaluation for all model outputs
 - Prepare transformer training data loaders and baseline configs
 - Define final reporting format for val / test full / Claude / Non-Claude
+- Freeze a short **environment and hardware** paragraph (Python, library versions, machine specs) for thesis §4.1
 
 ### P1
 - Train DistilBERT full fine-tuning baseline

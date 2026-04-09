@@ -1,0 +1,12 @@
+,0
+n_rows,1062.0
+n_unique_maintext_md5,1055.0
+empty_maintext,0.0
+pct_url_like_in_main,82.49
+median_words_main,20.0
+pct_lang_en_or_like,96.14
+date_parse_ok,1062.0
+year_min,2022.0
+year_max,2023.0
+n_core_like_category,623.0
+n_en_and_core_like,612.0
